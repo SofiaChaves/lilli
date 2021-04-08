@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import InfoPlaceholder from '../placeholders/info';
+import ErrorPlaceholder from '../placeholders/error';
+
 import styles from './table.module.css'
 
 const isEmpty = (obj) => {
@@ -8,9 +10,7 @@ const isEmpty = (obj) => {
 }
 
 const Table = ({ loading, articles, error }) => {
-    return loading ? (<div>loading</div>) : 
-        error ? (<div>{error}</div>) : 
-        isEmpty(articles) ? <InfoPlaceholder/> :
+    return loading ? (<div>loading</div>) : error ? <ErrorPlaceholder /> : isEmpty(articles) ? <InfoPlaceholder /> :
     (
         <div className={styles.tableWrapper}>
             <table className={styles.table}>
