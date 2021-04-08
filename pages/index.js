@@ -1,6 +1,8 @@
 import Head from 'next/head'
-import Search from '../components/search'
 import styles from '../styles/Home.module.css'
+
+import Search from '../components/search'
+import Table from '../components/table'
 
 export default function Home() {
   return (
@@ -11,6 +13,8 @@ export default function Home() {
       </Head>
 
       <Search />
+      <Table />
+      
       
     </div>
   )

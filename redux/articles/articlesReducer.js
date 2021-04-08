@@ -1,30 +1,30 @@
 import { 
-    FETCH_POSTCODE_FAILURE,
-    FETCH_POSTCODE_SUCCESS, 
-    FETCH_POSTCODE_REQUEST } from './postcodeType';
+    FETCH_ARTICLES_REQUEST, 
+    FETCH_ARTICLES_SUCCESS,     
+    FETCH_ARTICLES_FAILURE } from './articlesType';
 
 const initialState = {
     loading: false,
-    data: [],
+    data: {},
     error: ''
 }
 
-const postcodeReducer = (state = initialState, action) => {
+const articlesReducer = (state = initialState, action) => {
     switch(action.type) {
-        case FETCH_POSTCODE_REQUEST: 
+        case FETCH_ARTICLES_REQUEST: 
             return {
                 ...state,
                 loading: true
             }
 
-        case FETCH_POSTCODE_SUCCESS: 
+        case FETCH_ARTICLES_SUCCESS: 
             return {
                 loading: false,
                 data: action.payload,
                 error: ''
             }
 
-        case FETCH_POSTCODE_FAILURE: 
+        case FETCH_ARTICLES_FAILURE: 
             return {
                 loading: false,
                 data: [],
@@ -36,4 +36,4 @@ const postcodeReducer = (state = initialState, action) => {
 
 }
 
-export default postcodeReducer
+export default articlesReducer

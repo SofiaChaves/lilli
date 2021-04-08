@@ -1,18 +1,19 @@
 import {
-    FETCH_POSTCODE_FAILURE, 
-    FETCH_POSTCODE_REQUEST,     
-    FETCH_POSTCODE_SUCCESS} from './postcodeType'
+    FETCH_POSTCODE_REQUEST, 
+    FETCH_POSTCODE_SUCCESS,     
+    FETCH_POSTCODE_FAILURE} from './postcodeType'
 
+import { fetchArticles } from '../index'
 
     import axios from 'axios'
     
-    export const fetchPostcodeRequest = () => {
+    const fetchPostcodeRequest = () => {
         return {
             type: FETCH_POSTCODE_REQUEST,
         }
     }
     
-    export const fetchPostcodeSuccess = data => {
+    const fetchPostcodeSuccess = data => {
         return {
             type: FETCH_POSTCODE_SUCCESS,
             payload: data
@@ -20,7 +21,7 @@ import {
     }
     
     
-    export const fetchPostcodeFailure = error => {
+    const fetchPostcodeFailure = error => {
         return {
             type: FETCH_POSTCODE_FAILURE,
             payload: error
@@ -32,7 +33,8 @@ import {
             dispatch(fetchPostcodeRequest())
             axios.get('http://api.postcodes.io/postcodes/' + postcode)
                 .then(res =>{
-                    dispatch(fetchPostcodeSuccess(res.data.result))                
+                    dispatch(fetchArticles(res.data.result.longitude, res.data.result.latitude))
+                    dispatch(fetchPostcodeSuccess(res.data.result))              
                 })
                 .catch(error =>{
                     dispatch(fetchPostcodeFailure(error.message))
